@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nutrition_app/main/checkout_screen.dart';
 
 class DetailsPage extends StatefulWidget {
   final heroTag;
@@ -99,7 +100,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                   fontFamily: 'Montserrat',
                                   fontSize: 20.0,
                                   color: Colors.grey)),
-                          Container(height: 25.0, color: Colors.grey, width: 1.0),
+                          Container(
+                              height: 25.0, color: Colors.grey, width: 1.0),
                           Container(
                             width: 125.0,
                             height: 40.0,
@@ -115,7 +117,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                     height: 25.0,
                                     width: 25.0,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(7.0),
+                                        borderRadius:
+                                            BorderRadius.circular(7.0),
                                         color: Color(0xFF7A9BEE)),
                                     child: Center(
                                       child: Icon(
@@ -137,7 +140,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                     height: 25.0,
                                     width: 25.0,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(7.0),
+                                        borderRadius:
+                                            BorderRadius.circular(7.0),
                                         color: Colors.white),
                                     child: Center(
                                       child: Icon(
@@ -167,24 +171,29 @@ class _DetailsPageState extends State<DetailsPage> {
                               SizedBox(width: 10.0),
                               _buildInfoCard('AVAIL', 'NO', 'AV')
                             ],
-                          )
-                      ),
+                          )),
                       SizedBox(height: 20.0),
                       Padding(
-                        padding: EdgeInsets.only(bottom:5.0),
+                        padding: EdgeInsets.only(bottom: 5.0),
                         child: Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0), bottomLeft: Radius.circular(25.0), bottomRight: Radius.circular(25.0)),
-                              color: Colors.black
-                          ),
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(10.0),
+                                  topRight: Radius.circular(10.0),
+                                  bottomLeft: Radius.circular(25.0),
+                                  bottomRight: Radius.circular(25.0)),
+                              color: Colors.black),
                           height: 50.0,
                           child: Center(
-                            child: Text(
-                                '\$52.00',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Montserrat'
-                                )
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => Checkout()));
+                              },
+                              child: Text('\$52.00',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Montserrat')),
                             ),
                           ),
                         ),
@@ -208,15 +217,14 @@ class _DetailsPageState extends State<DetailsPage> {
             curve: Curves.easeIn,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              color: cardTitle == selectedCard ? Color(0xFF7A9BEE) : Colors.white,
+              color:
+                  cardTitle == selectedCard ? Color(0xFF7A9BEE) : Colors.white,
               border: Border.all(
-                  color: cardTitle == selectedCard ?
-                  Colors.transparent :
-                  Colors.grey.withOpacity(0.3),
+                  color: cardTitle == selectedCard
+                      ? Colors.transparent
+                      : Colors.grey.withOpacity(0.3),
                   style: BorderStyle.solid,
-                  width: 0.75
-              ),
-
+                  width: 0.75),
             ),
             height: 100.0,
             width: 100.0,
@@ -230,8 +238,9 @@ class _DetailsPageState extends State<DetailsPage> {
                         style: TextStyle(
                           fontFamily: 'Montserrat',
                           fontSize: 12.0,
-                          color:
-                          cardTitle == selectedCard ? Colors.white : Colors.grey.withOpacity(0.7),
+                          color: cardTitle == selectedCard
+                              ? Colors.white
+                              : Colors.grey.withOpacity(0.7),
                         )),
                   ),
                   Padding(
@@ -258,10 +267,7 @@ class _DetailsPageState extends State<DetailsPage> {
                       ],
                     ),
                   )
-                ]
-            )
-        )
-    );
+                ])));
   }
 
   selectCard(cardTitle) {

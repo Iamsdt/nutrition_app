@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nutrition_app/main/checkout_screen.dart';
 import 'package:nutrition_app/main/detailsPage.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -213,20 +214,26 @@ Widget bottomBar(BuildContext context) {
           ),
         ),
       ),
-      Container(
-        height: 42.0,
-        width: 120.0,
-        decoration: BoxDecoration(
-            border: Border.all(
-                color: Colors.grey, style: BorderStyle.solid, width: 1.0),
-            borderRadius: BorderRadius.circular(10.0),
-            color: Color(0xFF1C1428)),
-        child: Center(
-            child: Text('Checkout',
-                style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    color: Colors.white,
-                    fontSize: 15.0))),
+      InkWell(
+        onTap: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Checkout()));
+        },
+        child: Container(
+          height: 42.0,
+          width: 120.0,
+          decoration: BoxDecoration(
+              border: Border.all(
+                  color: Colors.grey, style: BorderStyle.solid, width: 1.0),
+              borderRadius: BorderRadius.circular(10.0),
+              color: Color(0xFF1C1428)),
+          child: Center(
+              child: Text('Checkout',
+                  style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      color: Colors.white,
+                      fontSize: 15.0))),
+        ),
       )
     ],
   );
