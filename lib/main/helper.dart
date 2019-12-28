@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/main/detailsPage.dart';
+import 'package:oktoast/oktoast.dart';
 
-Widget topBar() {
+Widget topBar(BuildContext context) {
   return Padding(
     padding: EdgeInsets.only(top: 15.0, left: 10.0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
 //        IconButton(
-//            icon: Icon(Icons.arrow_back_ios),
+//            icon: Icon(Icons.menu),
 //            color: Colors.white,
 //            onPressed: () {}),
         Container(
@@ -20,12 +21,16 @@ Widget topBar() {
               IconButton(
                 icon: Icon(Icons.filter_list),
                 color: Colors.white,
-                onPressed: () {},
+                onPressed: () {
+                  showChart(context);
+                },
               ),
               IconButton(
-                icon: Icon(Icons.menu),
+                icon: Icon(Icons.help_outline),
                 color: Colors.white,
-                onPressed: () {},
+                onPressed: () {
+                  showHelp(context);
+                },
               )
             ],
           ),
@@ -35,63 +40,146 @@ Widget topBar() {
   );
 }
 
-Widget buildFoodItem(
-    BuildContext context, String imgPath, String foodName, String price) {
-  return Padding(
-    padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-    child: InkWell(
-      onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => DetailsPage(
-                heroTag: imgPath, foodName: foodName, foodPrice: price)));
-      },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Container(
-            child: Row(
-              children: <Widget>[
-                Hero(
-                  tag: imgPath,
-                  child: Image(
-                    image: AssetImage(imgPath),
-                    fit: BoxFit.cover,
-                    height: 80.0,
-                    width: 80.0,
+void showHelp(BuildContext context) {
+  showModalBottomSheet(
+      context: context,
+      builder: (BuildContext bc) {
+        return Container(
+            child: Wrap(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, top: 30.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      FlutterLogo(
+                        size: 32.0,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Text(
+                          "Food App",
+                          style: TextStyle(
+                              fontSize: 28.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.cyan),
+                        ),
+                      )
+                    ],
                   ),
-                ),
-                SizedBox(
-                  width: 10.0,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      foodName,
-                      style: TextStyle(
-                          fontFamily: "Montserrat",
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16.0, left: 5.0),
+                    child: Text(
+                      "This Food app entrily made with flutter.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 18.0),
                     ),
-                    Text(price,
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontSize: 15.0,
-                            color: Colors.grey))
-                  ],
-                )
-              ],
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  )
+                ],
+              ),
             ),
-          ),
-          IconButton(
-              icon: Icon(Icons.add), color: Colors.black, onPressed: () {})
-        ],
-      ),
-    ),
-  );
+          ],
+        ));
+      });
 }
 
-Widget bottomBar() {
+void showChart(BuildContext context) {
+  showModalBottomSheet(
+      context: context,
+      builder: (BuildContext ctx) {
+        return Container(
+          padding: EdgeInsets.only(top: 30.0, left: 16.0),
+          child: Wrap(
+            children: <Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Image(
+                              image: AssetImage("assets/plate1.png"),
+                              width: 75.0,
+                              height: 75.0,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16.0),
+                                  child: Text(
+                                    "Salmon bowl",
+                                    style: TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: "Montserrat",
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16.0),
+                                  child: Text(
+                                    "Quantity: 2",
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontFamily: "Montserrat",
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0, right: 30.0),
+                        child: Text(
+                          "\$24.00",
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontFamily: "Montserrat",
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0, right: 30.0),
+                    child: Text(
+                      "Total \$24.00",
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Montserrat",
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      });
+}
+
+Widget bottomBar(BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: <Widget>[
@@ -117,7 +205,12 @@ Widget bottomBar() {
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Center(
-          child: Icon(Icons.shopping_basket, color: Colors.black),
+          child: IconButton(
+            icon: Icon(Icons.shopping_basket, color: Colors.black),
+            onPressed: () {
+              showChart(context);
+            },
+          ),
         ),
       ),
       Container(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/main/helper.dart';
+import 'package:nutrition_app/main/food_item.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -13,7 +14,7 @@ class _HomeState extends State<Home> {
       backgroundColor: Color(0xFF21BfBD),
       body: ListView(
         children: <Widget>[
-          topBar(),
+          topBar(context),
           SizedBox(
             height: 25.0,
           ),
@@ -59,21 +60,29 @@ class _HomeState extends State<Home> {
                     height: MediaQuery.of(context).size.height - 300.0,
                     child: ListView(
                       children: <Widget>[
-                        buildFoodItem(context, 'assets/plate1.png',
-                            'Salmon bowl', '\$24.00'),
-                        buildFoodItem(context, 'assets/plate2.png',
-                            'Spring bowl', '\$22.00'),
-                        buildFoodItem(context, 'assets/plate6.png',
-                            'Avocado bowl', '\$26.00'),
-                        buildFoodItem(context, 'assets/plate5.png',
-                            'Berry bowl', '\$24.00')
+                        FoodItem(
+                            'assets/plate1.png', 'Salmon bowl', '\$24.00', "1"),
+                        FoodItem(
+                            'assets/plate2.png', 'Spring bowl', '\$22.00', "2"),
+                        FoodItem('assets/plate6.png', 'Avocado bowl', '\$26.00',
+                            "3"),
+                        FoodItem(
+                            'assets/plate5.png', 'Berry bowl', '\$24.00', "4"),
+                        FoodItem(
+                            'assets/plate1.png', 'Salmon bowl', '\$24.00', "5"),
+                        FoodItem(
+                            'assets/plate2.png', 'Spring bowl', '\$22.00', "6"),
+                        FoodItem('assets/plate6.png', 'Avocado bowl', '\$26.00',
+                            "7"),
+                        FoodItem(
+                            'assets/plate5.png', 'Berry bowl', '\$24.00', "8"),
                       ],
                     ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0),
-                  child: bottomBar(),
+                  child: bottomBar(context),
                 )
               ],
             ),
