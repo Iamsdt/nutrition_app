@@ -9,41 +9,89 @@ class _CheckoutState extends State<Checkout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[topbar(context)],
+      appBar: AppBar(
+        elevation: 1.0,
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
+        title: Text(
+          "DELIVERY",
+          style: TextStyle(
+              color: Colors.black,
+              fontFamily: 'Montserrat',
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+        actions: <Widget>[
+          Icon(
+            Icons.more_vert,
+            color: Colors.black,
+          )
+        ],
       ),
-    );
-  }
-
-  Widget topbar(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 30.0, left: 15.0, right: 20.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: ListView(
         children: <Widget>[
-          IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          Text(
-            "Checkout",
-            style: TextStyle(
-                color: Colors.blue,
-                fontFamily: 'Montserrat',
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold),
+          Container(
+            height: MediaQuery.of(context).size.height / 1.8,
+            color: Colors.black,
           ),
           Container(
-              width: 32.0,
-              height: 32.0,
-              decoration: new BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: new DecorationImage(
-                      fit: BoxFit.fill,
-                      image: new NetworkImage(
-                          "https://weneedfun.com/wp-content/uploads/2015/09/Cute-baby-girl-pics-for-facebook-profile-1.jpg")))),
+            height: MediaQuery.of(context).size.height -
+                MediaQuery.of(context).size.height / 1.8,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [Colors.blue, Colors.lightBlue])),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top:50.0),
+                  child: MaterialButton(
+                    onPressed: () {},
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Text("Checkout", style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                        color: Colors.blue
+                      ),),
+                    ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(5.0),
+                        side: BorderSide(color: Colors.white,
+                        width: 2)
+                    ),
+                    padding: EdgeInsets.only(left: 100.0, right: 100.0),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top:30.0),
+                  child: MaterialButton(
+                    onPressed: () {},
+                    color: Colors.blue,
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Text("Edit your order", style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0,
+                          color: Colors.white
+                      ),),
+                    ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(5.0),
+                        side: BorderSide(color: Colors.white,
+                            width: 2)
+                    ),
+                    padding: EdgeInsets.only(left: 80.0, right: 80.0),
+                  ),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
